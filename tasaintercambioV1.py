@@ -12,6 +12,8 @@ for candidata in lista_candidatas: #Candidata es el diccionario de assets
     if candidata['type_is_crypto'] == 1: #bool(0) = False
         lista_definitiva.append(candidata['asset_id']) #asset_id es el identificador de moneda, solo nos interesan las criptos, es decir que el bool sea 1 (True)
 
+print("{} de {}".format(len(lista_definitiva), len(lista_candidatas)))
+
 cripto = input("Introduzca una cripto conocida: ").upper()
 while cripto != '':
     if cripto in lista_definitiva:
