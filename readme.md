@@ -7,7 +7,7 @@ Programa hecho en Python para recuperar el valor en € de una cripto desde Coin
 - Obtener la apikey en CoinAPI.io
 - Hacer una copia del fichero `config_template.py` y en la clave apikey poner tu clave
 ```
-aìkey = "sfjgnsña8956"
+apikey = "sfjgnsña8956"
 ```
 - Renombrar el fichero copia como `config.py`
 
