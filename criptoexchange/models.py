@@ -3,6 +3,9 @@ from config import apikey
 # https://requests.readthedocs.io/en/latest/ --- Guía a seguir
 import requests
 
+class ModelError(Exception):
+    pass
+
 
 class TodoCoinAPIio():
     def __init__(self): #Tienes que usar todas las apikeys
@@ -22,6 +25,21 @@ class TodoCoinAPIio():
                 self.no_criptos.append(candidata['asset_id']) #Aquí incluye sólo las monedas, no las criptomonedas
 
 
+class Cambio:
+    def __init__(self, cripto):
+        self.cripto = cripto
+        self.tasa = None
+        self.horafecha = None
+
+    def actualiza(self, apikey):
+        r = requests.get("https://rest.coinapi.io/v1/exchangerate/{}/EUR?apikey={}".format(self.cripto, apikey))
+        resultado = r.json()
+        if r.status_code == 200:
+            self.tasa = (resultado["rate"]) #Imprime el resultado "rate" con todos los decimales, ya que la capa de vista se encarga de darle el formato a los decimales
+            self.horafecha = resultado["time"]
+        else:
+            raise ModelError("{}: {}".format(r.status_code, resultado["error"]))
+        
 
 
 
